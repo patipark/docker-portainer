@@ -1,0 +1,21 @@
+version: "3.4"
+services:
+  portainer:
+    image: portainer/portainer-ee:latest
+    command: --http-enabled
+    #command: -H tcp://tasks.agent:9001 --tlsskipverify
+    ports:
+      - "9443:9443"
+      - "3080:9000"
+      - "8000:8000"
+    dns:
+      - 8.8.8.8
+      - 1.1.1.1
+      - 8.8.4.4
+    volumes:
+      - data:/data
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: unless-stopped
+volumes:
+  data:
+
